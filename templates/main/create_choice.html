@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>
+  Create choice
+</title>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+<form method="post">
+  {% csrf_token %}
+  {% for field in form.fields %}
+  {{field}}
+  {% if {{field}}=='question' %}
+  {% endif %}
+
+{% endfor %}
+  <button type="submit">submit</button>
+</form>
+{% endblock %}

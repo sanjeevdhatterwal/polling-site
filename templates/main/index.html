@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>
+  All questions
+</title>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+</ul>
+<ul class="collection with-header">
+  <li class="collection-header"><h4>All Questions</h4></li>
+  {% for question in question_list %}
+  <li class="collection-item"><div>{{question}}<a href="{% url 'question' question.slug %}" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

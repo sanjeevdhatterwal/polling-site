@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>
+  create Question
+</title>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+<form method="POST">
+  {% csrf_token %}
+  {% for field in form.fields %}
+  <div class="row">
+    <div class="input-field col s6">
+      <input id="{{field}}" type="text" class="validate">
+      <label class="active" for="{{field}}">{{field}}</label>
+    </div>
+  </div>
+
+{% endfor %}
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}

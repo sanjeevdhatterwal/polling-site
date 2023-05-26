@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>
+    Details
+</title>
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+<div class="Container">
+    <div class="row">
+        <h3>{{ question.content }}</h3>
+    </div>
+    <div class="row">
+        <form method ="POST">
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+            <p>
+                {% if answer %}
+                    {{choice.option}}({{choice.answer_count}})
+                    {% if answer.choice.id == choice.id %}
+                        <i class="material-icons">check</i>
+                    {% endif %}
+                {% else %}
+            <label>
+            <input name="choice" value="{{choice.id}}" type="radio" checked />
+                <span>{{ choice.option }}</span>
+            </label>
+                {% endif %}
+            </p>
+            {% endfor %}
+            <div class="row">
+                <button type="submit">submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% for error in form.errors %}
+    {{error}}
+{% endfor %}
+{% endblock %}
